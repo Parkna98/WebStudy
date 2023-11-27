@@ -31,7 +31,7 @@ public class StayListServlet extends HttpServlet {
 		List<StayVO> list=dao.StayListData(curpage);
 		out.println("<html>");
 		out.println("<head>");
-		out.println("<link rel=stylesheet href=food/table.css>");
+		out.println("<link rel=stylesheet href=Stay/table.css>");
 		out.println("</head>");
 		out.println("<body>");
 		out.println("<center>");
@@ -39,18 +39,18 @@ public class StayListServlet extends HttpServlet {
 		out.println("<table class=table_content width=800>");
 		out.println("<tr>");
 		out.println("<th width=10%>번호</th>");
-		out.println("<th width=15%></th>");
+		out.println("<th width=20%></th>");
 		out.println("<th width=20%>업체명</th>");
-		out.println("<th width=15%>업종</th>");
+		out.println("<th width=10%>업종</th>");
 		out.println("<th width=40%>주소</th>");
 		out.println("</tr>");
 		for(StayVO vo:list) {
 			out.println("<tr class=dataTr>");
 			out.println("<td width=10%>"+vo.getStayno()+"</td>");
-			out.println("<td width=15%><img src="+vo.getImage()+" width=30 hight=30></td>");
+			out.println("<td width=20%><img src="+vo.getImage()+" width=60 hight=90></td>");
 			out.println("<td width=20%><a href=StayDetailServlet?sno="+vo.getStayno()+">"+vo.getName()+"</a></td>");
 //			out.println("<td width=20%>"+vo.getName()+"</td>");
-			out.println("<td width=15%>"+vo.getType()+"</td>");
+			out.println("<td width=10%>"+vo.getType()+"</td>");
 			out.println("<td width=40%>"+vo.getAddress()+"</td>");
 			out.println("</tr>");
 		}

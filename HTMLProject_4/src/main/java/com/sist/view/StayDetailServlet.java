@@ -21,6 +21,7 @@ public class StayDetailServlet extends HttpServlet {
 		String sno=request.getParameter("sno");
 		StayDAO dao=StayDAO.newInstance();
 		StayDetailVO vo=dao.StayDetailData(Integer.parseInt(sno));
+		List<RoomVO> rlist=dao.RoomListData(Integer.parseInt(sno));
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<link rel=stylesheet href=Stay/table.css>");
@@ -83,6 +84,23 @@ public class StayDetailServlet extends HttpServlet {
 		out.println("</td>");
 		out.println("</tr>");
 		
+		out.println("</table>");
+		
+		out.println("<table class=table_content width=800>");
+		out.println("<tr>");
+		out.println("<th width=15%>번호</th>");
+		out.println("<th width=40%></th>");
+		out.println("<th width=20%>방이름</th>");
+		out.println("<th width=25%>가격</th>");
+		out.println("</tr>");
+		for(RoomVO rvo:rlist) {
+			out.println("<tr class=dataTr>");
+			out.println("<td width=15%>"+rvo.getRoomno()+"</td>");
+			out.println("<td width=40%><img src="+rvo.getImage()+" width=60 hight=90></td>");
+			out.println("<td width=20%>"+rvo.getName()+"</td>");
+			out.println("<td width=25%>"+rvo.getPrice()+"</td>");
+			out.println("</tr>");
+		}
 		out.println("</table>");
 		
 		out.println("</center>");

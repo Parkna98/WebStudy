@@ -40,7 +40,7 @@ public class StayDAO {
 		try {
 			getConnection();
 			// 페이지마다 데이터 읽기 
-			int rowSize=20;
+			int rowSize=10;
 			// num BETWEEN ? AND ? => 1page 1~20
 			//						  2page 21~40
 			//							... 
@@ -122,12 +122,39 @@ public class StayDAO {
 		}
 		return sdvo;
 	}
+	// 룸 목록
+	public List<RoomVO> RoomListData(int stno){
+		List<RoomVO> list=new ArrayList<RoomVO>();
+		try {
+			getConnection();
+			String sql="SELECT rno,roomno,room_image,room_name,room_price,stayno FROM roominfo "
+					+ "WHERE stayno="+stno+" ORDER BY rno";
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()) {
+				RoomVO vo=new RoomVO();
+				vo.setRno(rs.getInt(1));
+				vo.setRoomno(rs.getInt(2));
+				vo.setImage(rs.getString(3));
+				vo.setName(rs.getString(4));
+				vo.setPrice(rs.getInt(5));
+				vo.setStayno(rs.getInt(6));
+				list.add(vo);
+			}
+			rs.close();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			disConnection();
+		}
+		return list;
+	}
 	// 총 페이지 
 	public int StayTotalPage() {
 		int total=0;
 		try {
 			getConnection();
-			String sql="SELECT CEIL(COUNT(*)/20.0) FROM stayinfo";
+			String sql="SELECT CEIL(COUNT(*)/10.0) FROM stayinfo";
 			ps=conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
 			rs.next();
