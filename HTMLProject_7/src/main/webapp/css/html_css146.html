@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	ul li{
+		margin: 15px; /* 15 15 15 15 */
+		/* 간격 조절
+		   margin-top => 브라우저에서 간격 설정 
+		   margin-left => 메뉴등을 우측상단에 고정하고싶을때 (스크롤 내려도) margin top _fixed
+		   margin-right
+		   margin-bottom 
+		   ============= + margin 
+		   
+		   margin: 10px 15px;
+		   		   10 15 10 15
+		   		   ==	 ==
+		   		   	  == 	==
+		   		   10 15 20;
+		   		   10 15 20 15
+		 */	
+	}
+	li.top::after{
+		content: "new!!";
+		font-size: x-small;
+		padding: 2px 4px;
+		margin: 0 10px;
+		border-radius: 2px;
+		background-color: #f00;
+		color: white;
+	}
+</style>
+</head>
+<body>
+	<ul>
+		<li class="top">상품 A</li>
+		<li>상품 B</li>
+		<li>상품 C</li>
+		<li>상품 D</li>
+		<li class="top">상품 E</li>
+	</ul>
+</body>
+</html>
