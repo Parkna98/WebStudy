@@ -34,6 +34,9 @@ public class MainServlet extends HttpServlet {
 		case "4":
 			name="GoodsNewServlet";
 			break;
+		case "5":
+			name="GoodsDetailServlet";
+			break;
 		}
 		out.write("<html>");
 		out.write("<head>");
@@ -43,10 +46,11 @@ public class MainServlet extends HttpServlet {
 		rd.include(request, response);
 		// <jsp:include page="">
 		// jsp에서는 page가 this임 
+		// include는 잘사용해야한다, 같은 메뉴를 출력한다면 
 		out.write("<div style=\"height:30px\"></div>");
 		out.write("<div class=container>");
 		rd=request.getRequestDispatcher(name);
-		rd.include(request, response);
+		rd.include(request, response); // 모든 서블릿이 request를 공유
 		out.write("</div>");
 		out.write("</body>");
 		out.write("</html>");

@@ -85,6 +85,22 @@ public class GoodsDAO {
 		GoodsVO vo=new GoodsVO();
 		try {
 			getConnection();
+			String sql="SELECT no,goods_name,goods_sub,goods_price,goods_discount, "
+					+ "goods_first_price,goods_delivery,goods_poster "
+					+ "FROM "+tables[type]+" "
+					+ "WHERE no="+no;
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setNo(rs.getInt(1));
+			vo.setName(rs.getString(2));
+			vo.setSub(rs.getString(3));
+			vo.setPrice(rs.getString(4));
+			vo.setDiscount(rs.getInt(5));
+			vo.setFprice(rs.getString(6));
+			vo.setDelivery(rs.getString(7));
+			vo.setPoster(rs.getString(8));
+			rs.close();
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}finally {
