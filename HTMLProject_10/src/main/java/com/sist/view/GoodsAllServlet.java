@@ -49,7 +49,7 @@ public class GoodsAllServlet extends HttpServlet {
 		for(GoodsVO vo:list) {
 			out.write("<div class=\"col-md-3\">");
 			out.write("<div class=\"thumbnail\">");
-			out.write("<a href=MainServlet?mod=&no="+vo.getNo()+"&type=1");
+			out.write("<a href=MainServlet?mode=5&no="+vo.getNo()+"&type=1>");
 			out.write("<img src="+vo.getPoster()+" alt=\"Lights\" style=\"width:100%\">");
 			out.write("<div class=\"caption\">");
 			out.write("<p>"+vo.getName()+"</p>");

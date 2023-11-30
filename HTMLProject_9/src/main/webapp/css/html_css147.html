@@ -1,0 +1,119 @@
+<!--
+	CSS단위
+	=> 크기단위
+	==========
+	%
+	em
+		1em => 100%
+		1.5em => 150%
+		=> em => px
+			1em => 14px
+			1.2em => 14*1.2
+			
+	151page color
+	color:#FFF => white
+	color:rgb(255,255,255)
+	color:white
+	color:rgba(255,255,255,0.5)
+						   === 투명모드 (반투명)
+						   0.0~1.0 => opacity
+	URL
+		<img src=''>
+		<link href=''>
+		<a href=''>
+		background:url('')
+		=> 외부 URL=http://~
+		=> 내부 URL=htt:/image/a.jpg
+		
+		css
+			=> html1.html
+			=> a.jpg
+			
+		css
+			=> html1.html
+			=> image
+				=> a.jpg
+		
+		css
+			=> html1.html
+		image
+			=> a.jpg
+		=> ../image/a.jpg
+		==========================
+		1. CSS
+			= 선택자
+				= 크롤링 / 자바스크립트 / HTML => CSS
+				  doc.select("CSS선택자")
+				  $('CSS선택자')
+				  선택자{
+					  속성:값
+				  }
+				  => XML
+				  1) 태그 => 태그명{속성명:값} =>a{text-decoration:none}
+				  2) id명 => #id명{}
+				  3) class명 => .class명{}
+				  ======================= 태그 구분자
+				  4) 속성선택자 => 태그명[속성=값]{}
+				  	 ======== 모든 태그가 적용 : input, img, a
+				  	 태그명[속성*=값] contains=>포함
+				  	 태그명[속성^=값] startsWith => 값으로 시작
+				  	 태그명[속성$=값] endsWith => 값으로 끝
+				  	 
+			= 속성 
+				= 텍스트 관련 속성
+					font-family
+					font-size
+					text-align:(left,center,right)
+					vertical-align:(top,middle,bottom)
+					text-decoration:(underline:none)
+					**while-space: 자동 줄바꿈
+					line-height: 자간
+				= 이미지 관련 속성
+				= 위치 속성
+					margin / padding
+				= 테두리
+					border
+				= 목록 속성
+					ol, ul, dl
+				= 박스 모델
+					inline / block / inline-block
+				= 포지션
+					static / absolute / relative / fixed
+				= 기타
+					z-index / float 
+			= 반응형 웹
+				@media 
+			= 라이브러리 : bootstrap
+			
+		6. 가상 선택자
+			: hover: 마우스가 해당 태그에 올라왔을 경우
+				=> button, img, table..
+			: chekced : radio, checkbox
+			: focus : input
+		
+		7. 구조 선택자
+			:nth-child => 같은 태그가 여러개 있는 경우 위치찾기
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	/*p:nth-child(1){font-size: 100%;}
+	p:nth-child(2){font-size: 150%;}
+	p:nth-child(3){font-size: 200%;}
+	p:nth-child(1){font-size: 1em;}
+	p:nth-child(2){font-size: 1.2em;}
+	p:nth-child(3){font-size: 1.5em;}*/
+	p:nth-child(1){font-size: 16px;}
+	p:nth-child(2){font-size: 30px;}
+	p:nth-child(3){font-size: 100px;}
+</style>
+</head>
+<body>
+	<p>Hello CSS!!</p>
+	<p>Hello CSS!!</p>
+	<p>Hello CSS!!</p>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!--
+		텍스트 관련 CSS
+		=> font-size, font-family, font-weight
+		=> color
+		***1. text-decoration: none,underline,overline
+			=> 메뉴,<a>
+		2. text-transform : none, uppercase, lowercase
+		3. text-shadow
+		***4. white-space
+		***5. letter-spacing
+		6. word-spacing
+		***7. text-align : 정렬 => left/center/right
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	ul{
+		width:700px;
+		background-color: #FC6;
+		color: black;
+	}
+	li{
+		width: auto;
+		list-style: none;
+		display: inline-block;
+		text-transform: uppercase;
+		text-shadow: 5px 5px 3px red;
+	}
+	a{
+		color:black;
+		text-decoration: none;
+		text-shadow: 5px 5px 3px red;
+	}
+	a:hover{
+		color: white;
+		text-decoration: overline;
+	}
+	table{
+		width:600px;
+	}
+	pre{
+		white-space: pre-wrap;
+		letter-spacing: 0.2em;
+	}
+</style>
+</head>
+<body>
+	<ul>
+		<li>홈</li>
+		<li>상품</li>
+		<li>예약</li>
+		<li>마이페이지</li>
+		<li>커뮤니티</li>
+	</ul>
+	<table>
+		<tr>
+			<td><pre>30일 정부와 업계에 따르면 과학기술정보통신부는 이음5G 주파수 대역을 활용해 28㎓ 지하철 와이파이를 제공할 수 있도록 할당 공고를 개정했다. 이음5G는 특정 사업자가 토지와 건물 등 일정 구역 단위로 5G 주파수를 활용하는 통신망이다.
+
+박윤규 과기정통부 2차관은 지난 28일 미디어 간담회에서 “통신 3사가 제공하는 5G 28㎓ 와이파이 무선전송망(백홀) 서비스를 이번 달까지 하는 걸로 했는데, 신규 사업자가 가져가면 좋겠지만 그렇게는 안 될 것 같다”라며 “이음5G 형태로 제공하는 등 다양한 방안을 검토하고 있다”라고 했다.
+
+통신사 한 관계자는 “정부가 지하철 와이파이 이음5G 사업자 범위를 통신 3사로 넓혔지만, 이미 28㎓ 주파수를 포기한 통신 3사가 굳이 다시 들어갈 이유는 없어 보인다”라고 했다.</pre></td>
+		</tr>
+	</table>
+</body>
+</html>
