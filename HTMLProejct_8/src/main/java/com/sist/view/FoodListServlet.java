@@ -130,6 +130,7 @@ public class FoodListServlet extends HttpServlet {
 		}
 		for(int i=startPage;i<=endPage;i++) {
 			out.write("<li "+(i==curpage?"class=active":"")+"><a href=FoodListServlet?page="+i+">"+i+"</a></li>");
+			// <li class=active><a>
 		}
 		if(endPage<totalpage) {
 			out.write("<li><a href=FoodListServlet?page="+(endPage+1)+">&gt;</a></li>");
