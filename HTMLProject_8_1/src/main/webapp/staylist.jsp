@@ -260,10 +260,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Organi Shop</h2>
+                        <h2>반려동물과 함께하는 여행</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <span>Shop</span>
+                            <a href="./index.html">여행 숙소</a>
+                            <span>목록</span>
                         </div>
                     </div>
                 </div>
@@ -394,8 +394,12 @@
                                                 <span><%=cList.get(i).getPrice() %></span>
                                             </div>
                                         </a>
-                        		
                         <%
+                        			if(i==(cList.size()-1)){
+                        %>
+                        				</div>
+                        <%				
+                        			}
                         		}
                         		else if(i%3==1){
                         	
@@ -410,7 +414,12 @@
                                             </div>
                                         </a>
                         <%
-                        		}
+			            			if(i==(cList.size()-1)){
+			            %>
+			            				</div>
+			            <%				
+			            			}
+			            		}
                         		else if(i%3==2){
                         %>
                         			<a href="#" class="latest-product__item">

@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.*;
 import com.sist.dao.*;
 
 @WebServlet("/GoodsDetailServlet")
@@ -27,6 +29,29 @@ public class GoodsDetailServlet extends HttpServlet {
 		out.write("<html>");
 		out.write("<head>");
 		out.write("<link rel=\"stylesheet\" href=\"css/style.css\">");
+		out.write("<script type=text/javascript src=\"http://code.jquery.com/jquery.js\"></script>");
+		out.write("<script type=text/javascript>");
+		out.write("let i=0;");
+		// 자바스크립트 => 자동 변환 변수 ==> let i=0  i:int
+		// let a="aaa"  a:String let d=10.5=> d:double 
+		// let o={} => o:Object , let k=[] k:Array
+		// var => scope 
+		out.write("$(function(){");
+		out.write("$('.ups').click(function(){");
+		out.write("$('.updates').hide();");
+		out.write("let a=$(this).attr('data-no');");
+		out.write("if(i==0){");
+		out.write("$('#m'+a).show();");
+		out.write("$(this).text('취소');");
+		out.write("i=1;");
+		out.write("}else{");
+		out.write("$('#m'+a).hide();");
+		out.write("$(this).text('수정');");
+		out.write("i=0;");
+		out.write("}");
+		out.write("})");
+		out.write("})");
+		out.write("</script>");
 		out.write("</head>");
 		out.write("<body>");
 		String html="<div class=\"container\">"
@@ -49,7 +74,7 @@ public class GoodsDetailServlet extends HttpServlet {
 				+ "				</tr>"
 				+ "				<tr>"
 				+ "					<td width=\"65%\">"
-				+ "						<span id=\"percent\">"+vo.getDiscount()+"</span>&nbsp;"
+				+ "						<span id=\"percent\">"+vo.getDiscount()+"%</span>&nbsp;"
 				+ "						<span id=\"price\">"+vo.getPrice()+"</span>"
 				+ "						<p>"
 				+ "							<del id=\"psub\">9,900원</del>"
@@ -93,9 +118,118 @@ public class GoodsDetailServlet extends HttpServlet {
 				+ "		</div>"
 				+ "	</div>";
 		out.write(html);
+		out.write("<div style=\"height:30px\"></div>");
+		out.write("<div class=row>");
+		// 댓글 출력
+		out.write("<table class=table>");
+		out.write("<tr>");
+		out.write("<td>");
+		ReplyDAO rdao=ReplyDAO.newInstancce();
+		List<ReplyVO> list=rdao.replyListData(Integer.parseInt(type), Integer.parseInt(no));
+		HttpSession session=request.getSession();
+		String id=(String)session.getAttribute("id");
+		for(ReplyVO rvo:list) {
+			out.write("<table class=table>");
+			out.write("<tr>");
+			out.write("<td class=text-left>");
+			out.write("◑"+rvo.getName()+"&nbsp;("+rvo.getDbday()+")");
+			out.write("</td>");
+			out.write("<td class=text-right>");
+			if(rvo.getId().equals(id)) {
+				out.write("<span class=\"btn btn-xs btn-success ups\" data-no="+rvo.getRno()+">수정</span>&nbsp;");
+				out.write("<a href=ReplyDeleteServlet?rno="+rvo.getRno()+"&type="+type+"&no="+no+" class=\"btn btn-xs btn-danger\">삭제</a>");
+				
+			}
+			out.write("</td>");
+			out.write("</tr>");
+			
+			out.write("<tr>");
+			out.write("<td colspan=2>");
+			out.write("<pre style=\"while-space:pre-wrap;background-color:white;border:none\">"+rvo.getMsg()+"</pre>");
+			out.write("</td>");
+			out.write("</tr>");
+			
+			// 평소에는 display:none으로 안보이게하고 수정버튼누르면 보이게함
+			out.write("<tr id=m"+rvo.getRno()+" class=updates style=\"display:none\">");
+			out.write("<td colspan=2>");
+			
+			out.write("<form method=post action=ReplyUpdateServlet>");
+			out.write("<input type=hidden name=rno value="+rvo.getRno()+">");
+			out.write("<input type=hidden name=gno value="+no+">");
+			out.write("<input type=hidden name=typeno value="+type+">");
+			out.write("<textarea name=msg rows=4 cols=60 style=\"float:left\">"+rvo.getMsg()+"</textarea>");
+			out.write("<input type=submit value=\"댓글 수정\" style=\"width:100px;height:89px;background:blue;color:white\">"); // html에서 공백이 있으면 다른것으로 인식하므로 따옴표를 입력해야함
+			out.write("</form>");
+			// 처리하는 서블릿 / 화면 출력 서블릿 => JSP도 마찬가지
+			// => 화면이 없는 (HTML) => 자체에서 처리
+			out.write("</td>");
+			out.write("</tr>");
+			out.write("</table>");
+		}
+		out.write("</td>");
+		out.write("</tr>");
+		out.write("</table>");
+		
+
+		// 댓글 작성
+		if(id!=null) { // 로그인 된 상태
+			out.write("<form method=post action=GoodsDetailServlet>");
+			// 버튼을 누르면 아래의 값들을 보내준다
+			// 값은 숨겨야 하기때문에 hidden으로 지정한다!!!
+			out.write("<input type=hidden name=gno value="+no+">");
+			out.write("<input type=hidden name=typeno value="+type+">");
+			out.write("<textarea name=msg rows=4 cols=60 style=\"float:left\"></textarea>");
+			out.write("<input type=submit value=\"댓글 쓰기\" style=\"width:100px;height:89px;background:blue;color:white\">"); // html에서 공백이 있으면 다른것으로 인식하므로 따옴표를 입력해야함
+			out.write("</form>");
+		}
+		out.write("</div>");
 		out.write("</body>");
 		out.write("</html>");
 		// => head, style, script => 닫기를 하지 않으면 흰색화면만 출력
  	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 1. 한글 변환
+		try {
+			req.setCharacterEncoding("UTF-8");
+		}catch(Exception ex) {}
+		String gno=req.getParameter("gno");
+		String typeno=req.getParameter("typeno");
+		String msg=req.getParameter("msg");
+		
+		HttpSession session=req.getSession();
+		String id=(String)session.getAttribute("id");
+		String name=(String)session.getAttribute("name");
+		
+		ReplyVO vo=new ReplyVO();
+		vo.setId(id);
+		vo.setName(name);
+		vo.setMsg(msg);
+		vo.setGno(Integer.parseInt(gno));
+		vo.setTypeno(Integer.parseInt(typeno));
+		
+		// DAO 연동
+		ReplyDAO dao=ReplyDAO.newInstancce();
+		dao.replyInsert(vo);
+		
+		// 이동(화면이동)
+		resp.sendRedirect("MainServlet?mode=5&no="+gno+"&type="+typeno);
+		/*
+				request : 클라이언트에 대한 정보
+						  ip / port ...
+						  사용자가 전송한 정보 => request.getParameter(name)로 받기
+				response : 응답 정보 / 헤더 정보
+						   =======
+						   ㅣHTML => setContentType
+						    화면 이동 정보 => sendRedirect()
+			    => JSP 동일
+			       내장 객체 => request, response, session
+			       => Spring에서 JSP는 동일
+		 */
+		// 
+	}
+	
+	
 
 }

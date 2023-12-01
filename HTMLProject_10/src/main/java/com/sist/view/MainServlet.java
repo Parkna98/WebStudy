@@ -46,7 +46,7 @@ public class MainServlet extends HttpServlet {
 		rd.include(request, response);
 		// <jsp:include page="">
 		// jsp에서는 page가 this임 
-		// include는 잘사용해야한다, 같은 메뉴를 출력한다면 
+		// include는 잘사용해야한다, 같은 메뉴를 출력한다면
 		out.write("<div style=\"height:30px\"></div>");
 		out.write("<div class=container>");
 		rd=request.getRequestDispatcher(name);
