@@ -70,4 +70,21 @@ public class MemberDAO {
 		}
 		return vo;
 	}
+	
+	public void memberInsert(MemberVO vo) {
+		try {
+			getConnection();
+			String sql="INSERT INTO member_servlet VALUES("
+					+ "?,?,?)";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getId());
+			ps.setString(2, vo.getPwd());
+			ps.setString(3, vo.getName());
+			ps.executeUpdate();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			disConnection();
+		}
+	}
 }

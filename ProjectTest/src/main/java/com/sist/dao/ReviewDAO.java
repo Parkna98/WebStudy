@@ -85,4 +85,18 @@ public class ReviewDAO {
 			disConnection();
 		}
 	}
+	// 삭제
+	public void reviewDelete(int rno) {
+		try {
+			getConnection();
+			String sql="DELETE FROM review_test "
+					+ "WHERE rno="+rno;
+			ps=conn.prepareStatement(sql);
+			ps.executeUpdate();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			disConnection();
+		}
+	}
 }

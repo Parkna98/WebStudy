@@ -5,10 +5,8 @@
 	String gno=request.getParameter("sno");
 	String typeno=request.getParameter("typeno");
 	String msg=request.getParameter("msg");
-	String score=request.getParameter("score");
-	Double sco=Double.parseDouble(score);
-	String star=request.getParameter("star");
-	
+	String star=request.getParameter("rating3");
+	Double score=Double.parseDouble(star);
 	session=request.getSession();
 	String id=(String)session.getAttribute("id");
 	String name=(String)session.getAttribute("name");
@@ -19,7 +17,7 @@
 	vo.setMsg(msg);
 	vo.setGno(Integer.parseInt(gno));
 	vo.setTypeno(Integer.parseInt(typeno));
-	vo.setScore(sco);
+	vo.setScore(score);
 	vo.setStar(star);
 	
 	// DAO 연동
