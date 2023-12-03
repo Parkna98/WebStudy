@@ -3,8 +3,15 @@
 <%
 	response.setContentType("text/html;charset=UTF-8");
 	StayDAO dao=new StayDAO();
+	String typeno="1";
 	String sno=request.getParameter("sno");
 	StayVO vo=dao.StayDetailData(Integer.parseInt(sno));
+	
+	ReviewDAO rdao=ReviewDAO.newInstance();
+	List<ReviewVO> list=rdao.reviewListData(Integer.parseInt(typeno), Integer.parseInt(sno));
+	
+	session=request.getSession();
+	String id=(String)session.getAttribute("id");
 %>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -29,6 +36,9 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -160,18 +170,83 @@
                             </div>
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">
-                                    <h6>Products Infomation</h6>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-                                        Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
-                                        Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
-                                        sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo
-                                        eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.
-                                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent
-                                        sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac
-                                        diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante
-                                        ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                                        Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
-                                        Proin eget tortor risus.</p>
+									  <div style="height:30px"></div>
+									  <div class=row>
+									  	<table>
+									  		<tr>
+									  		<td>
+									  		<%
+									  			for(ReviewVO rvo:list){
+									  		%>
+									  			<table>
+									  			  <tr>
+									  			    <td class="text-left">
+									  			    <%="▶"+rvo.getName()+"&nbsp;("+rvo.getDbday()+")" %>
+									  			    </td>
+									  			    <td class="text-right">
+									  			    <%
+									  			    	if(rvo.getId().equals(id)){
+									  			    %>
+									  			    	<span class="btn btn-xs btn-success ups" data-no=<%=rvo.getRno() %>>수정</span>&nbsp;
+									  			    	<a href=reviewdelete.jsp class="btn btn-xs btn-danger">삭제</a>
+									  			    <%		
+									  			    	}
+									  			    %>
+									  			    </td>
+									  			  </tr>
+									  			  <tr>
+									  			  	<td colspan=2>
+									  			  	<pre style=white-space:pre-wrap;background-color:white;border:none;><%=rvo.getMsg() %></pre>
+									  			  	</td>
+									  			  </tr>
+									  			</table>
+									  		<%		
+									  			}
+									  		%>
+									  		</td>
+									  		</tr>
+									  	</table>
+									  </div>
+									  <div class="container">
+									  <!-- Trigger the modal with a button -->
+									  <%
+									  	if(id!=null){
+									  %>
+									  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="float:right;">리뷰 작성</button>
+									  <%
+									  	}
+									  %>
+									  <!-- 댓글 출력 -->
+									  <!-- Modal -->
+									  <div class="modal fade" id="myModal" role="dialog">
+									    <div class="modal-dialog">
+									    
+									      <!-- Modal content-->
+									      <div class="modal-content">
+									        <div class="modal-header">
+									          <h4 class="modal-title">Modal Header</h4>
+									          <button type="button" class="close" data-dismiss="modal" style="float:right;">&times;</button>
+									        </div>
+									        <div class="modal-body">
+									           <form class="review-form" method="post" action="reviewinsert.jsp">
+											      <input type="hidden" name="sno" value=<%=sno %> >
+											      <input type="hidden" name="typeno" value="1" >
+											      <input type="text" name="score" placeholder="0.0~5.0" required>
+											      <input type="text" name="star" placeholder="별 1개~5개" required>
+											      <textarea name=msg rows=4 cols=60 required></textarea>
+											      <div class="modal-footer">
+											          <button type="submit" class="btn btn-default">submit</button>
+											          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									        	  </div>
+    										   </form>
+									        </div>
+									        
+									      </div>
+									      
+									    </div>
+									  </div>
+									  
+									</div>
                                 </div>
                             </div>
                         </div>
