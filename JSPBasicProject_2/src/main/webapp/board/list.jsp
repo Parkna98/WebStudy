@@ -45,7 +45,9 @@ a:hover{
 </head>
 <body>
 	<center>
+		<a href="list.jsp?page=1">
 		<img id="main" src="https://i0.wp.com/aikidonews.co.kr/wp-content/uploads/2017/03/QA-e1488530256249.jpg?resize=500%2C269" width="700" height="130" >		
+		</a>
 		<table class="table_content" width="800">
 			<tr>
 				<td>
@@ -78,7 +80,54 @@ a:hover{
 						<%		
 							}
 						%>
-						<a href="detail.jsp?no=<%=vo.getNo()%>"><%=vo.getSubject() %></a> &nbsp;
+						<%
+							String msg="관리자가 삭제한 게시물입니다";
+							if(!msg.equals(vo.getSubject())){
+								
+							
+						%>
+						<%
+							}
+							else
+							{
+						%>
+							<span></span>
+						<%	
+							}		
+						%>
+						<a href="detail.jsp?no=<%=vo.getNo()%>&page=<%=curpage%>"><%=vo.getSubject() %></a> &nbsp;
+						<%-- 
+								데이터는 항상 ? 앞에 있는 파일이 받는다
+								no에 해당하는 게시물을 출력 요청 
+								=> 사용자 요청
+									1) <form> : 추가, 수정, 답변, 회원가입... ==> POST
+									2) 화면 변경 => <a> => GET => 데이터를 받는 파일명?키=값&키=값...
+																				    -- 구분자(값을 여러개 보낼때)
+										=> GET : URL주소에 노출 : id,pwd.. (session)
+								=> 클라이언트 / 서버 
+								     요청	 처리 후 응답  =>  웹 프로그램 (네트워크 : C/S)
+								     === 요청을 관련된 데이터를 묶어서 한번에 전송
+								     	 웹서버에서 묶어준다 : request 
+								     	 request => 클라이언트와 관련된 데이터 관리
+								     	 			====================
+								     	 			1) Cookie  => request.getCookies()
+								     	 			2) Session => request.getSession()
+								     	 response => HTML을 전송해서 브라우저에 출력 
+								     	 			 Cookie를 전송
+								     	 			 원하는 페이지 이동 : SendRedirect("xx.jsp")
+								1. 상세보기 : 한개만 보여준다 => primary key
+								2. 추가, 수정 => 데이터 베이스
+								3. 예약 => 예약과 관련된 테이블에 컬럼
+										  ======================
+								동작 방식 
+								1. 사용자 요청
+									 detail.jsp?no=<%=vo.getNo()%>&page=<%=curpage%>
+									 링크 => 화면 변경
+								2. 요청된 데이터 받기
+								   no / page
+								3. 해당 데이터베이스 연결 DAO
+								4. 처리된 결과를 받아서 화면 출력
+						--%>
 						<%
 							SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 							String today=sdf.format(new Date());
