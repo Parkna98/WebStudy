@@ -98,5 +98,41 @@ public class DataBoardDAO {
 		}
 		return vo;
 	}
+	// 삭제
+	public void boardDelete(int no) {
+		try {
+			conn=dbconn.getConnection();
+			String sql="DELETE FROM databoard "
+					+ "WHERE no="+no;
+			ps=conn.prepareStatement(sql);
+			ps.executeUpdate();
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			dbconn.disConnection(conn, ps);
+		}
+	}
+	public DataBoardBean boardFileInfoData(int no) {
+		DataBoardBean vo=new DataBoardBean();
+		try {
+			conn=dbconn.getConnection();
+			String sql="SELECT filename,filesize "
+					+ "FROM databoard "
+					+ "WHERE no="+no;
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setFilename(rs.getString(1));
+			vo.setFilesize(rs.getInt(2));
+			rs.close();
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			dbconn.disConnection(conn, ps);
+		}
+		return vo;
+	}
 }
 

@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../jsp/table.css">
-<style type="text/css">
+<style type="text/css"> 
 a{
 	color: black;
 	text-decoration: none;
@@ -52,13 +52,19 @@ span{
 			%>
 				<tr>
 					<th width=20%>첨부파일</th>
-					<td colspan=3><%=vo.getFilename() %>&nbsp;(<%=vo.getFilesize() %>Bytes)</td>
+					<td colspan=3><a href="download.jsp?fn=<%=vo.getFilename() %>"><%=vo.getFilename() %></a>&nbsp;(<%=vo.getFilesize() %>Bytes)</td>
 				</tr>	
 			<%		
 				}
 			%>
 			<tr>
 				<td colspan=4 class=text-left align=top height=200><pre style="white-space: pre-wrap;"><%=vo.getContent() %></pre></td>
+			</tr>
+			<tr>
+				<td colspan=4 class=text-right>
+				  <a href="delete.jsp?no=<%=vo.getNo()%>">삭제</a>&nbsp;
+				  <a href="list.jsp">목록</a>
+				</td>
 			</tr>
 		</table>
 	</center>

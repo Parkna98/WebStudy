@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../jsp/table.css">
-</head>
+</head> 
 <body>
   <center>
   	<h1>게시판</h1>
