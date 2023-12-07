@@ -11,12 +11,12 @@
 	boolean bCheck=dao.boardDelete(Integer.parseInt(no), pwd);
 	// 3. 화면 이동 => 기존의 화면 이동(list.jsp) / 화면 출력
 	if(bCheck){
-		response.sendRedirect("list.jsp?page"+curpage);
+		response.sendRedirect("list.jsp?page="+curpage);
 	}
 	else{
 	%>
 			<script>
-			aler("비밀번호가 틀립니다")
+			alert("비밀번호가 틀립니다")
 			history.back();
 			</script>
 	<%		
