@@ -86,7 +86,7 @@ public class GoodsDAO {
 	public GoodsVO goodsDetailData(int type,int no) {
 		GoodsVO vo=new GoodsVO();
 		try {
-			dbconn.getConnection();
+			conn=dbconn.getConnection();
 			String sql="SELECT * FROM "+tables[type]+" WHERE no="+no;
 			ps=conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
