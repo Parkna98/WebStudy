@@ -1,13 +1,20 @@
 package com.sist.model;
 
 import javax.servlet.http.HttpServletRequest;
+import com.sist.dao.*;
+import com.sist.vo.*;
 
 public class DetailModel implements Model {
 
 	@Override
 	public String handleRequest(HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		request.setAttribute("msg", "게시판 상세보기");
+		String no=request.getParameter("no");
+		// DAO
+		BoardDAO dao=BoardDAO.newInstance();
+		BoardVO vo=dao.boardDetail(Integer.parseInt(no));
+		// request
+		request.setAttribute("vo", vo);
 		return "board/detail.jsp";
 	}
 

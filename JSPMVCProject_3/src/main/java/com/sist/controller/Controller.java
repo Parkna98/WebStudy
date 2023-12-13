@@ -20,7 +20,7 @@ public class Controller extends HttpServlet {
 	private Map clsMap=new HashMap();
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
-		String path="C:\\webDev\\webStudy\\JSPMVCProject_3\\src\\main\\webapp\\WEB-INF\\application.xml";
+		String path="C:\\Users\\SIST\\git\\WebStudy\\JSPMVCProject_3\\src\\main\\webapp\\WEB-INF\\application.xml";
 		try {
 			DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
 			// HTML, XMl, WML, HDM... 파싱가능
@@ -41,7 +41,7 @@ public class Controller extends HttpServlet {
 				Class clsName=Class.forName(cls);
 				// 이름만 주면 메모리할당 가능
 				Object obj=clsName.getDeclaredConstructor().newInstance();
-				System.out.println(obj);
+				//System.out.println(obj);
 				clsMap.put(id, obj);
 			}
 		}catch(Exception ex) {}

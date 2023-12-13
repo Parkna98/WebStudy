@@ -9,6 +9,14 @@ public class StayDAO {
 	private PreparedStatement ps;
 	private CreateDBCPConnection dbconn=new CreateDBCPConnection();
 	private final int ROW_SIZE=12;
+	private static StayDAO dao;
+	
+	// 싱글턴
+	public static StayDAO newInstance() {
+		if(dao==null)
+			dao=new StayDAO();
+		return dao;
+	}
 	
 	// 목록출력
 	public List<stayVO> StayListData(int page){

@@ -1,5 +1,6 @@
 package com.sist.dao;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 import java.sql.*;
 
 import com.sist.dbcp.CreateDBCPConnection;
@@ -25,8 +26,8 @@ public class BoardDAO {
 			conn=dbconn.getConnection();
 			String sql="SELECT no,subject,name,TO_CHAR(regdate,'yyyy-MM-dd'),hit,num "
 					+ "FROM (SELECT no,subject,name,regdate,hit,rownum AS num "
-					+ "FROM (SELECT /*+ INDEX_DESC(jspBoard jb_no_pk)*/ no,subject,name,regdate,hit "
-					+ "FROM jspBoard)) "
+					+ "FROM (SELECT no,subject,name,regdate,hit "
+					+ "FROM jspBoard ORDER BY no DESC)) "
 					+ "WHERE num BETWEEN ? AND ?";
 			ps=conn.prepareStatement(sql);
 			int start=(ROW_SIZE*page)-(ROW_SIZE-1);
@@ -62,6 +63,7 @@ public class BoardDAO {
 					+ "FROM jspBoard";
 			ps=conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
+			rs.next();
 			total=rs.getInt(1);
 			rs.close();
 		}catch(Exception ex) {
@@ -70,6 +72,56 @@ public class BoardDAO {
 			dbconn.disConnection(conn, ps);
 		}
 		return total;
+	}
+	// 데이터 추가
+	public void boardInsert(BoardVO vo) {
+		try {
+			conn=dbconn.getConnection();
+			String sql="INSERT INTO jspboard(no,name,subject,content,pwd) "
+					+ "VALUES (jb_no_seq.nextval,?,?,?,?)";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, vo.getName());
+			ps.setString(2, vo.getSubject());
+			ps.setString(3, vo.getContent());
+			ps.setString(4, vo.getPwd());
+			ps.executeUpdate();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			dbconn.disConnection(conn, ps);
+		}
+	}
+	
+	// 상세보기
+	public BoardVO boardDetail(int no) {
+		BoardVO vo=new BoardVO();
+		try {
+			conn=dbconn.getConnection();
+			String sql="UPDATE jspboard SET "
+					+ "hit=hit+1 "
+					+ "WHERE no="+no;
+			ps=conn.prepareStatement(sql);
+			ps.executeUpdate();
+			
+			sql="SELECT no,name,subject,content,TO_CHAR(regdate,'yyyy-MM-dd'),hit "
+				+ "FROM jspBoard "
+				+ "WHERE no="+no;
+			ps=conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			vo.setNo(rs.getInt(1));
+			vo.setName(rs.getString(2));
+			vo.setSubject(rs.getString(3));
+			vo.setContent(rs.getString(4));
+			vo.setDbday(rs.getString(5));
+			vo.setHit(rs.getInt(6));
+			rs.close();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			dbconn.disConnection(conn, ps);
+		}
+		return vo;
 	}
 			
 }
