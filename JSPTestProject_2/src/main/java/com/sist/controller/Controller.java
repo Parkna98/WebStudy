@@ -20,7 +20,7 @@ public class Controller extends HttpServlet {
 	private Map clsMap=new HashMap();
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
-		String path="C:\\webDev\\webStudy\\JSPTestProject_2\\src\\main\\webapp\\WEB-INF\\application.xml";
+		String path="C:\\Users\\SIST\\git\\WebStudy\\JSPTestProject_2\\src\\main\\webapp\\WEB-INF\\application.xml";
 		try {
 			DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
 			// HTML, XMl, WML, HDM... 파싱가능
