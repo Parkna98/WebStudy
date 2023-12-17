@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+		1. 태그 정의 <!ELEMENT>
+		   <!ELEMENT html (head?,body?)>
+		   <!ELEMENT head (title?,meta*,script*,style*,link*)>
+		   ? => 해당태그를 사용해도되고 안해도되고
+		   * => 0번이상 사용
+		   | => 선택 => ex) (th|td)*
+		   + => 1번이상 사용
+		   default => 반드시 사용
+		   
+		2. 속성 정의 <!ATTLIST>
+			id => primary key => id가 중복되면 안됨 => MyBatis,Spring
+			ref => foreign key => idref(id참조) 
+			
+			
+		
+		3. 변수 정의 <!ENTITY> 
+		   <!ENTITY nbsp ' '>   ==>   &nbsp;
+		   <!ENTITY lt '<'>     ==>   &lt;
+		   <!ENTITY gt '>'>
+		   <!ENTITY le '<='>
+		   <!ENTITY ge '>='>
+		   id (#PCDATA) => id에는 태그는 없고 사이에 문자열써라 <id>문자열</id>
+		
+ -->
+ <!ELEMENT member (list+)>
+ <!ELEMENT list (id,pwd,name,address,(phone|tel),content?)>
+ <!ELEMENT id (#PCDATA)>
+ <!ELEMENT name (#PCDATA)>
+ <!ELEMENT pwd (#PCDATA)>
+ <!ELEMENT address (#PCDATA)>
+ <!ELEMENT phone (#PCDATA)>
+ <!ELEMENT tel (#PCDATA)>
+ <!ELEMENT content (#PCDATA)>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
