@@ -13,6 +13,10 @@
 	overflow: hidden; /* 초과된 텍스트를 감추기위해 오버플로우를 숨김 */
 	text-overflow: ellipsis; /* 말줄임표 만드는 속성 */
 }
+.stayfont{
+	font-size: 14px;
+	font-weight: bold;
+}
 </style>
 </head>
 <body>
@@ -22,10 +26,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Organi Shop</h2>
+                        <h2>Hotel With Dogs</h2>
                         <div class="breadcrumb__option">
                             <a href="../main/main.do">Home</a>
-                            <span>Shop</span>
+                            <span>Hotel</span>
                         </div>
                     </div>
                 </div>
@@ -138,59 +142,72 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="sidebar__item">
+                         <div class="sidebar__item">
                             <div class="latest-product__text">
-                                <h4>최근 본 숙소</h4>
+                                <h4>Latest Products</h4>
                                 <div class="latest-product__slider owl-carousel">
+                                <c:if test="${count==0 }">
+                                  <div class="latest-prdouct__slider__item">
+                                    <a href="#" class="latest-product__item">
+                                     <div class="latest-product__item__pic">
+                                     </div>
+                                     <div class="latest-product__item__text">
+                                        <h6>방문기록이 없습니다</h6>
+                                        <span class="stayname"></span>
+                                     </div>
+                                    </a>
+                                  </div>
+                                  <div>
+                                </c:if>
                                 
-                                 <c:forEach var="i" begin="0" end="${count }">
+                                
+                                <c:if test="${count!=0 }">
+                                
+                                <c:forEach var="vo" items="${stcList }" varStatus="status">
                                  <c:choose>
-                                  <c:when test="${i%3==0 }">
+                                  <c:when test="${status.first}">
                                     <div class="latest-prdouct__slider__item">
                                         <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="${stcList.get(i).image }" alt="">
+                                                <img src="${vo.image }" alt="">
                                             </div>
                                             <div class="latest-product__item__text">
-                                                <h6>${stcList.get(i).name }</h6>
-                                                <span>${stcList.get(i).price }</span>
+                                                <h6 class="stayname">${vo.name }</h6>
+                                                <h6 class="stayname stayfont">&#8361;${vo.price }~</h6>
                                             </div>
                                         </a>
-                                       <c:if test="${i==(count-1) }">
-                                         </div>
-                                       </c:if>
-                                     </c:when>
-                                     <c:when test="${i%3==1 }">
-                                       <a href="#" class="latest-product__item">
+                                   </c:when>
+                                   <c:when test="${status.index%3 eq 0}">
+                                     </div>
+                                     <div class="latest-prdouct__slider__item">
+                                        <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="${stcList.get(i).image }" alt="">
+                                                <img src="${vo.image }" alt="">
                                             </div>
                                             <div class="latest-product__item__text">
-                                                <h6>${stcList.get(i).name }</h6>
-                                                <span>${stcList.get(i).price }</span>
+                                                <h6 class="stayname">${vo.name }</h6>
+                                                <h6 class="stayname stayfont">&#8361;${vo.price }~</h6>
                                             </div>
                                         </a>
-                                        <c:if test="${i==(count-1) }">
-                                          </div>
-                                        </c:if>
-                                     </c:when>
-                                     <c:otherwise>
-                                       <a href="#" class="latest-product__item">
+                                   </c:when>
+                                   <c:otherwise>
+                                     <a href="#" class="latest-product__item">
                                             <div class="latest-product__item__pic">
-                                                <img src="${stcList.get(i).image }" alt="">
+                                                <img src="${vo.image }" alt="">
                                             </div>
                                             <div class="latest-product__item__text">
-                                                <h6>${stcList.get(i).name }</h6>
-                                                <span>${stcList.get(i).price }</span>
+                                                <h6 class="stayname">${vo.name }</h6>
+                                                <h6 class="stayname stayfont">&#8361;${vo.price }~</h6>
                                             </div>
                                         </a>
-                                       </div>
-                                     </c:otherwise>
-                                    </c:choose>
-                                   </c:forEach>
-                                  </div>
+                                   </c:otherwise>
+                                  </c:choose>
+                                 </c:forEach>
+                                 
+                                 </c:if>
+                                 </div>
+                                 
                                 </div>
-                                  
                             </div>
                         </div>
                     </div>
@@ -215,8 +232,8 @@
                                             </ul>
                                         </div>
                                         <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="#">${tvo.name }</a></h5>
+                                            <span>${tvo.type }</span>
+                                            <h5 class="stayname"><a href="#">${tvo.name }</a></h5>
                                             <div class="product__item__price">&#8361;${tvo.price }~</div>
                                         </div>
                                     </div>
@@ -262,7 +279,7 @@
                                 </div>
                                 <div class="product__item__text">
                                     <h6 class="stayname"><a href="../stay/detail_before.do?stayno=${vo.stayno }">${vo.name }</a></h6>
-                                    <h5>${vo.price }원 부터~</h5>
+                                    <h5>&#8361;${vo.price }~</h5>
                                 </div>
                             </div>
                         </div>

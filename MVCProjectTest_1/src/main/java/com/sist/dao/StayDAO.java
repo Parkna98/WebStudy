@@ -129,9 +129,9 @@ public class StayDAO {
 			int top=6;
 			try {
 				conn=dbconn.getConnection();
-				String sql="SELECT stay_no,sname,score,address,price,jjim,likecount,mainimage,num "
-						+ "FROM (SELECT stay_no,sname,score,address,price,jjim,likecount,mainimage,rownum AS num "
-						+ "FROM (SELECT stay_no,sname,score,address,price,jjim,likecount,mainimage "
+				String sql="SELECT stay_no,sname,score,address,price,jjim,likecount,mainimage,stype,num "
+						+ "FROM (SELECT stay_no,sname,score,address,price,jjim,likecount,mainimage,stype,rownum AS num "
+						+ "FROM (SELECT stay_no,sname,score,address,price,jjim,likecount,mainimage,stype "
 						+ "FROM stayinfo,stayimage WHERE stayinfo.STAY_NO=stayimage.SINO ORDER BY likecount DESC,STAY_NO ASC)) "
 						+ "WHERE num<="+top;
 				
@@ -147,6 +147,7 @@ public class StayDAO {
 					vo.setJjim(rs.getInt(6));
 					vo.setLike(rs.getInt(7));
 					vo.setImage(rs.getString(8));
+					vo.setType(rs.getString(9));
 					list.add(vo);
 				}
 				rs.close();
