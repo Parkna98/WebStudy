@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="org.json.simple.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,7 @@ $(function(){
 		//alert(type);
 		$.ajax({
 			type:'post',
-			url:'staylisthome.jsp',
+			url:'../main/staylisthome.do',
 			data:{"fd":fd},
 			success:function(result){
 				$('#print').html(result)
@@ -107,7 +108,7 @@ $(function(){
                 </div>
             </div>
             <div class="row featured__filter" id="print">
-              <%-- <c:forEach var="vo" items="${sList }">
+              <c:forEach var="vo" items="${sList }">
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="${vo.image }">
@@ -123,7 +124,7 @@ $(function(){
                         </div>
                     </div>
                 </div>
-              </c:forEach> --%>
+              </c:forEach>
             </div>
         </div>
     </section>
