@@ -60,8 +60,10 @@ public class StayModel {
 		
 		StayDAO dao=StayDAO.newInstance();
 		StayVO vo=dao.stayDetail(Integer.parseInt(stayno));
+		List<RoomVO> rlist=dao.RoomListData(Integer.parseInt(stayno));
 
 		request.setAttribute("vo", vo);
+		request.setAttribute("rlist", rlist);
 		request.setAttribute("main_jsp", "../stay/detail.jsp");
 		return "../main/main.jsp";
 	}

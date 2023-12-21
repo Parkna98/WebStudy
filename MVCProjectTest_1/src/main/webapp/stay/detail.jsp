@@ -1,10 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.stayintro {
+    height: 200px;
+    width: 486px;
+    display: flex;
+    --tw-bg-opacity: 1;
+    background-color: rgb(233 241 246 / var(--tw-bg-opacity));
+    padding: 20px 22px 20px 20px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-between;
+}
+</style>
 </head>
 <body>
 <!-- Breadcrumb Section Begin -->
@@ -34,19 +50,19 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                src="${vo.image }" alt="">
+                                src="${vo.image }" alt="" style="border-radius: 10px;overflow: hidden;">
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
                             <img data-imgbigurl="${vo.image }"
-                                src="${vo.image }" alt="">
+                                src="${vo.image }" alt="" style="border-radius: 10px;overflow: hidden;">
                             <img data-imgbigurl="${vo.sub1 }"
-                                src="${vo.sub1 }" alt="">
+                                src="${vo.sub1 }" alt="" style="border-radius: 10px;overflow: hidden;">
                             <img data-imgbigurl="${vo.sub2 }"
-                                src="${vo.sub2 }" alt="">
+                                src="${vo.sub2 }" alt="" style="border-radius: 10px;overflow: hidden;">
                             <img data-imgbigurl="${vo.sub3 }"
-                                src="${vo.sub3 }" alt="">
+                                src="${vo.sub3 }" alt="" style="border-radius: 10px;overflow: hidden;">
                             <img data-imgbigurl="${vo.sub4 }"
-                                src="${vo.sub4 }" alt="">
+                                src="${vo.sub4 }" alt="" style="border-radius: 10px;overflow: hidden;">
                         </div>
                     </div>
                 </div>
@@ -62,12 +78,22 @@
                             <i class="fa fa-star-half-o"></i>
                             <span>${vo.revcount }개 리뷰</span>
                         </div>
+                        <div style="height: 15px"></div>
                         <div class="product__details__price">&#8361;${vo.price }~</div>
+                        <div style="height: 15px"></div>
                         <a href="#" class="primary-btn">예약하기</a>
                         <a href="#" class="primary-btn">찜하기</a>
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        <div style="height: 30px"></div>
+                        <div class="stayintro">
+                          <h6 style="margin-bottom: 20px;color: #666"><b>숙소 소개</b></h6>
+                          <div style="display: flex">
+                          	<img src="../img/pngegg.png" style="width: 25px;height: 25px; ">
+                            <p style="margin-left: 9px">${vo.msg }</p>
+                          </div>
+                        </div>
                     </div>
-                    <p style="margin-top:-12px">
+                   <!--  <p style="margin-top:-12px">
 					    <em class="link">
 					        <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
 					        </a>
@@ -113,7 +139,7 @@
 					        map.setCenter(coords);
 					    } 
 					});    
-					</script>
+					</script> -->
                 </div>
                 <div class="col-lg-12">
                     <div class="product__details__tab">
@@ -143,14 +169,16 @@
                                     <h6 style="margin-bottom: 15px">확인 사항 및 기타</h6>
                                     <p>${vo.other }</p>
                                 </div>
-                                <div class="row" style="width: 100%">
+                                <p style="height: 40px"></p>
+                                <h6 style="font-weight: 600; color: #333; margin-top: 15px">숙소위치 안내</h6>
+                                <p style="height: 20px"></p>
                                 <p style="margin-top:-12px">
 								    <em class="link">
 								        <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
 								        </a>
 								    </em>
 								</p>
-								<div id="map" style="width:100%;height:350px;"></div>
+								<div id="map" style="width:100%;height:350px;border-radius: 10px;overflow: hidden;border: 1px solid #D9D9D9"></div>
 								
 								<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a8b770a89aec1599120a66eb6392863b&libraries=services"></script>
 								<script>
@@ -191,27 +219,49 @@
 								    } 
 								});    
 								</script> 
-								</div>
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <div class="product__details__tab__desc">
-                                    <h6>Products Infomation</h6>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-                                        Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
-                                        Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
-                                        sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo
-                                        eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.
-                                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent
-                                        sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac
-                                        diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante
-                                        ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                                        Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
-                                        Proin eget tortor risus.</p>
-                                    <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
-                                        ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet
-                                        elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum
-                                        porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus
-                                        nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.</p>
+                                        <!-- Shoping Cart Section Begin -->
+									    <section class="shoping-cart spad" style="padding-top: 10px">
+									        <div class="container">
+									            <div class="row">
+									                <div class="col-lg-12">
+									                    <div class="shoping__cart__table">
+									                        <table>
+									                            <thead>
+									                                <tr>
+									                                    <th class="shoping__product">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;방이름</th>
+									                                    <th>가격</th>
+									                                    <th>예약버튼</th>
+									                                </tr>
+									                            </thead>
+									                            <tbody>
+									                              <c:forEach var="rvo" items="${rlist }">
+									                                <tr>
+									                                    <td class="shoping__cart__item">
+									                                        <img src="${rvo.image }" alt="" style="width: 150px;height: 150px;border-radius: 10px;overflow: hidden;border: 1px solid #D9D9D9">
+									                                        <h5>${rvo.name }</h5>
+									                                    </td>
+									                                    <td class="shoping__cart__price">
+									                                        &#8361;${rvo.price }
+									                                    </td>
+									                                    <td class="shoping__cart__quantity">
+									                                        <div class="quantity">
+									                                            <a href="#" class="primary-btn">예약하기</a>
+									                                        </div>
+									                                    </td>
+									                                </tr>
+									                              </c:forEach>
+									                            </tbody>
+									                        </table>
+									                    </div>
+									                </div>
+									            </div>
+									            
+									        </div>
+									    </section>
+									    <!-- Shoping Cart Section End -->
                                 </div>
                             </div>
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
