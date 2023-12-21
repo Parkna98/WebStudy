@@ -26,32 +26,34 @@
       <input placeholder="비밀번호 재입력" type="password" tabindex="3" required>
     </fieldset>
     <fieldset>
-      <input placeholder="이름 입력" type="text" tabindex="2" required>
+      <input placeholder="이름 입력" type="text" tabindex="4" required>
     </fieldset>
     <fieldset>
-      <input type="radio" tabindex="2">남자
-      <input type="radio" tabindex="2">여자
+      <input type="radio" tabindex="5">남자
+      <input type="radio" tabindex="6">여자
     </fieldset>
     <fieldset>
-      <input placeholder="생년월일 입력" type="date" tabindex="2" required>
+      <input placeholder="생년월일 입력" type="date" tabindex="7" required>
+      
     </fieldset>
     <fieldset>
-      <input placeholder="이메일" type="text" tabindex="2">
+      <input placeholder="이메일" type="text" tabindex="8">
     </fieldset>
     <fieldset>
-      <input placeholder="우편번호" type="text" tabindex="3" required>
+      <input class="writepost" placeholder="우편번호" type="text" tabindex="9" style="float:left;" required>
+      <button class="postnum" name="postnum" type="button" id="contact-post" style="float: left">우편번호검색</button>
     </fieldset>
     <fieldset>
-      <input placeholder="주소" type="text" tabindex="3" required>
+      <input placeholder="주소" type="text" tabindex="10" required>
     </fieldset>
     <fieldset>
-      <input placeholder="상세주소" type="text" tabindex="3">
+      <input placeholder="상세주소" type="text" tabindex="11">
     </fieldset>
     <fieldset>
-      <input placeholder="전화번호" type="text" tabindex="3">
+      <input placeholder="전화번호" type="text" tabindex="12">
     </fieldset>
     <fieldset>
-      <textarea placeholder="당신의 반려동물을 소개해주세요." tabindex="5" required></textarea>
+      <textarea placeholder="당신의 반려동물을 소개해주세요." tabindex="13" required></textarea>
     </fieldset>
     <fieldset>
       <button name="submit" type="submit" id="contact-submit" data-submit="...Sending" style="float: left">회원가입</button>

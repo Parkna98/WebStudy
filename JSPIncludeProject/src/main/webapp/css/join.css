@@ -91,6 +91,13 @@ fieldset {
   margin: 0 0 5px;
   padding: 10px;
 }
+#contact input.writepost{
+  width: 61%;
+  border: 1px solid #ccc;
+  background: #FFF;
+  margin: 0 0 5px;
+  padding: 10px;
+}
 
 #contact input[type="text"]:hover,
 #contact input[type="email"]:hover,
@@ -133,6 +140,16 @@ fieldset {
   font-size: 15px;
 }
 #contact button[type="button"].idch {
+  cursor: pointer;
+  width:30%;
+  border: none;
+  background: #5a70e9;
+  color: #FFF;
+  margin: 0 0 5px 25px;
+  padding: 10px;
+  font-size: 14px;
+}
+#contact button[type="button"].postnum {
   cursor: pointer;
   width:30%;
   border: none;
