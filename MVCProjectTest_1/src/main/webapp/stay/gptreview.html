@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>여기어때 리뷰</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .review-container {
+      max-width: 600px;
+      margin: 50px auto;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .user-name {
+      font-weight: bold;
+      color: #555;
+    }
+
+    .reviewer-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+
+    .review-text {
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .star {
+      color: #FFD700;
+      margin-right: 5px;
+    }
+
+    .half-star {
+      position: relative;
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 14px solid #FFD700;
+      margin-right: 5px;
+    }
+
+    .user-image {
+      flex-shrink: 0;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="review-container">
+  <img src="../img/mainlogo.png" alt="User Avatar" class="user-image">
+
+  <div>
+    <h2>여기어때 리뷰</h2>
+    
+    <div class="user-info" style="float:left; display: inline;">
+      <img src="../img/mainlogo.png" alt="Reviewer Avatar" class="reviewer-avatar" style="float:left">
+      <div class="user-name" style="float: left;">사용자1</div>
+    </div>
+
+    <div class="rating">
+      <span class="star">⭐️</span>
+      <span class="star">⭐️</span>
+      <span class="star">⭐️</span>
+      <span class="star">⭐️</span>
+      <span class="star half-star"></span> <!-- 반개짜리 별 추가 -->
+    </div>
+
+    <p class="review-text">여기어때 정말 좋아요! </p>
+    <p class="review-text">서비스가 훌륭하고 위치도 좋습니다.</p>
+  </div>
+</div>
+
+</body>
+</html>

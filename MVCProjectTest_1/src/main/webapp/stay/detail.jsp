@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="../css/star.css">
 <style type="text/css">
 .stayintro {
     height: 200px;
@@ -20,6 +21,85 @@
     flex-direction: column;
     justify-content: space-between;
 }
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      .review-container {
+        max-width: 1140px;
+        margin: 50px auto;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        display: flex;
+        align-items: center;
+      }
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+      }
+
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      .user-name {
+        font-weight: bold;
+        color: #555;
+        margin-left: 10px;
+      }
+
+      .reviewer-avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+      .mid_2 {
+        display: flex;
+        height: 10px;
+      }
+      .mid_2 p {
+        margin-top: -10px;
+        font-size: 12px;
+        color: #999;
+      }
+      .review-type {
+        font-size: 12px;
+        color: #666;
+        margin-top: 6px;
+      }
+      .review-text {
+        color: #666;
+        margin-top: -6px;
+      }
+
+      .rating {
+        display: flex;
+        align-items: center;
+        margin-top: -10px;
+      }
+
+      .star {
+        color: #ffd700;
+        margin-right: 5px;
+      }
+
+      .user-image {
+        flex-shrink: 0;
+        width: 150px;
+        height: 150px;
+        border-radius: 10px;
+        margin-right: 20px;
+      }
 </style>
 </head>
 <body>
@@ -267,17 +347,86 @@
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                     <h6>Products Infomation</h6>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-                                        Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
-                                        Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
-                                        sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo
-                                        eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.
-                                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent
-                                        sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac
-                                        diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante
-                                        ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                                        Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
-                                        Proin eget tortor risus.</p>
+                                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="float:right;">리뷰 작성</button>
+                                    
+                                    <div class="review-container">
+								      <img src="../img/mainlogo.png" alt="User Avatar" class="user-image" />
+								
+								      <div class="mid_1">
+								        <div class="user-info">
+								          <img
+								            src="../img/mainlogo.png"
+								            alt="Reviewer Avatar"
+								            class="reviewer-avatar"
+								            style="float: left"
+								          />
+								          <div class="user-name">사용자1</div>
+								        </div>
+								        <br />
+								        <div class="mid_2">
+								          <div class="rating">
+								            <span class="star">⭐️</span>
+								            <span class="star">⭐️</span>
+								            <span class="star">⭐️</span>
+								            <span class="star">⭐️</span>
+								            <span class="star">⭐️</span>
+								          </div>
+								          <p>작성날짜 적는 곳</p>
+								        </div>
+								        <div class="mid_3">
+								          <p class="review-type">타입 적는 곳</p>
+								          <p class="review-text">
+								            여기어때 정말 좋아요! 서비스가 훌륭하고 위치도 좋습니다. 여기어때
+								            정말 좋아요! 서비스가 훌륭하고 위치도 좋습니다. 여기어때 정말
+								            좋아요! 서비스가 훌륭하고 위치도 좋습니다.
+								          </p>
+								        </div>
+								      </div>
+								    </div>
+                                    
+                                    
+                                    <div class="modal fade" id="myModal" role="dialog">
+									    <div class="modal-dialog">
+									      <!-- Modal content-->
+									      <div class="modal-content">
+									      	<form class="review-form" method="post" action="reviewinsert.jsp">
+									        <div class="modal-header">
+									          <p>별점을 선택해주세요!</p>
+									          
+									          <div id="full-stars-example-two" style=margin-top:30px;margin-left:0px>
+											    <div class="rating-group">
+											        <input disabled checked class="rating__input rating__input--none" name="rating3" id="rating3-none" value="0" type="radio">
+											        <label aria-label="1 star" class="rating__label" for="rating3-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+											        <input class="rating__input" name="rating3" id="rating3-1" value="1" type="radio">
+											        <label aria-label="2 stars" class="rating__label" for="rating3-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+											        <input class="rating__input" name="rating3" id="rating3-2" value="2" type="radio">
+											        <label aria-label="3 stars" class="rating__label" for="rating3-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+											        <input class="rating__input" name="rating3" id="rating3-3" value="3" type="radio">
+											        <label aria-label="4 stars" class="rating__label" for="rating3-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+											        <input class="rating__input" name="rating3" id="rating3-4" value="4" type="radio">
+											        <label aria-label="5 stars" class="rating__label" for="rating3-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+											        <input class="rating__input" name="rating3" id="rating3-5" value="5" type="radio">
+											    </div>
+											 </div>
+											 <button type="button" class="close" data-dismiss="modal" style="float:right;">&times;</button>
+									        </div>
+									        <div class="modal-body">
+									           <p>어떤점이 만족스러우셨나요?<p>
+									           
+											     <%--<input type="hidden" name="sno" value=<%=sno %> > --%> 
+											     <%-- <input type="hidden" name="typeno" value="1" > --%>
+											      <textarea name=msg rows=10 cols=60 required></textarea>
+											      <div class="modal-footer">
+											          <button type="submit" class="btn btn-default">저장</button>
+											          <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+									        	  </div>
+    										   
+									        </div>
+									        </form>
+									      </div>
+									      
+									    </div>
+									  </div>
                                 </div>
                             </div>
                         </div>
