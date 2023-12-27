@@ -11,7 +11,7 @@
   font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
-/*
+
 body {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   font-weight: 100;
@@ -20,7 +20,7 @@ body {
   color: #777;
   background: #5a70e9;
 }
-*/
+
 
 .join_container {
   max-width: 400px;
