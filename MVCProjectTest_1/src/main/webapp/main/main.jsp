@@ -48,6 +48,9 @@
 		height: 50px;
 		font-size: 15px;
     }
+.body{
+	width: 100%;
+}
 </style>
 </head>
 <body>

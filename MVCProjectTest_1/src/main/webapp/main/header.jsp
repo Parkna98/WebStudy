@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,24 +23,30 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
-                            <div class="header__top__right__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                          <c:if test="${sessionScope.id==null }">
+                           <div class="header__top__right__auth">
+                            <a href="../adminPage/ad_reserve.do"><i class="fa fa-user"></i> Adminpage</a>
                             </div>
-                            <div class="header__top__right__language">
-                                <img src="img/language.png" alt="">
-                                <div>English</div>
-                                <span class="arrow_carrot-down"></span>
-                                <ul>
-                                    <li><a href="#">Spanis</a></li>
-                                    <li><a href="#">English</a></li>
-                                </ul>
+                            &nbsp;&nbsp;
+                            <div class="header__top__right__auth">
+                            <a href="#"><i class="fa fa-user"></i> Mypage</a>
                             </div>
+                            &nbsp;&nbsp;
                             <div class="header__top__right__auth">
                                 <a href="#"><i class="fa fa-user"></i> Login</a>
                             </div>
+                            &nbsp;&nbsp;
+                            <div class="header__top__right__auth">
+                                <a href="../member/join.do"><i class="fa fa-user"></i> Join</a>
+                            </div>
+                           </c:if>
+                           <c:if test="${sessionScope.id!=null }">
+                            &nbsp;&nbsp;
+                            <div class="header__top__right__auth">
+                                <a href="#"><i class="fa fa-user"></i> Logout</a>
+                            </div>
+                           </c:if>
+                           
                         </div>
                     </div>
                 </div>
