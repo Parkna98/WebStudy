@@ -31,4 +31,10 @@ public class MemberModel {
 			out.write(String.valueOf(count));
 		}catch(Exception ex) {}
 	}
+	
+	@RequestMapping("member/postfind.do")
+	public String member_postfind(HttpServletRequest request,
+			  HttpServletResponse response) {
+		return "../member/postfind.jsp";
+	}
 }

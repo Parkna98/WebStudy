@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="../shadow/css/shadowbox.css">
+<script type="text/javascript" src="../shadow/js/shadowbox.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+
+</script>
 </head>
 <body>
 <!-- Header Section Begin -->
@@ -33,11 +39,11 @@
                             </div>
                             &nbsp;&nbsp;
                             <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
+                                <a href="../member/login.do"><i class="fa fa-user"></i> Login</a>
                             </div>
                             &nbsp;&nbsp;
                             <div class="header__top__right__auth">
-                                <a href="../member/join.do"><i class="fa fa-user"></i> Join</a>
+                                <a href="../member/jointest.jsp"><i class="fa fa-user"></i> Join</a>
                             </div>
                            </c:if>
                            <c:if test="${sessionScope.id!=null }">
