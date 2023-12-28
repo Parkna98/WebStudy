@@ -103,8 +103,8 @@ $(function(){
       </li>
       <li><a class="drop" href="#">맛집</a>
         <ul>
-          <li><a href="pages/gallery.html">전체 맛집</a></li>
-          <li><a href="pages/full-width.html">지역별 맛집 찾기</a></li>
+          <li><a href="../food/list.do">전체 맛집</a></li>
+          <li><a href="../food/location.do">지역별 맛집 찾기</a></li>
           <c:if test="${sessionScope.id!=null }">
            <li><a href="pages/sidebar-left.html">맛집 예약</a></li>
           </c:if>
@@ -112,7 +112,7 @@ $(function(){
       </li>
       <li><a class="drop" href="#">레시피</a>
         <ul>
-          <li><a href="pages/gallery.html">레시피</a></li>
+          <li><a href="../board/list.do">레시피</a></li>
           <li><a href="pages/full-width.html">쉐프</a></li>
           <c:if test="${sessionScope.id!=null }">
            <li><a href="pages/sidebar-left.html">레시피 만들기</a></li>
