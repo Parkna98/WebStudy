@@ -10,19 +10,39 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 $(function(){
-	$('.btn').click(function(){
-		let fd=$(this).attr("value");
-		//alert(type);
-		$.ajax({
-			type:'post',
-			url:'../main/staylisthome.do',
-			data:{"fd":fd},
-			success:function(result){
-				$('#print').html(result)
-			}
-		})
+	let ss='가평'
+	stayhome(ss)
+	$('.homeStayBtn').click(function(){
+		let fds=$(this).attr('value');
+		stayhome(fds)
 	})
+	
 });
+function stayhome(fds){
+	$.ajax({
+		type:'post',
+		url:'../stay/location_list.do',
+		data:{"fds":fds},
+		success:function(json){
+			let res=JSON.parse(json);
+			let html='';
+			for(let vo of res){
+				html+='<div class="col-lg-3 col-md-4 col-sm-6">'
+                    +'<div class="featured__item">'
+                	+'<div class="featured__item__pic set-bg" data-setbg="'+vo.image+'">'
+                	+'</div>'
+                	+'<div class="featured__item__text">'
+                    +'<h6><a href="#">'+vo.name+'</a></h6>'
+                    +'<h5>'+vo.price+'</h5>'
+                	+'</div>'
+            		+'</div>'
+        			+'</div>'
+			}
+			console.log(html)
+			$('#print').html(html)
+		}
+	})
+}
 </script>
 </head>
 <body>
@@ -99,32 +119,16 @@ $(function(){
                         <h2>지역별 추천 숙소</h2>
                     </div>
                     <div class="featured__controls">
-                        <input type="button" value="가평" class="btn btn-sm btn-danger">
-				        <input type="button" value="인천" class="btn btn-sm btn-warning">
-				        <input type="button" value="강원" class="btn btn-sm btn-primary">
-				        <input type="button" value="충남" class="btn btn-sm btn-success">
-				        <input type="button" value="제주" class="btn btn-sm btn-success">
+                        <input type="button" value="가평" class="btn btn-sm btn-danger homeStayBtn">
+				        <input type="button" value="인천" class="btn btn-sm btn-warning homeStayBtn">
+				        <input type="button" value="강원" class="btn btn-sm btn-primary homeStayBtn">
+				        <input type="button" value="충남" class="btn btn-sm btn-success homeStayBtn">
+				        <input type="button" value="제주" class="btn btn-sm btn-success homeStayBtn">
                     </div>
                 </div>
             </div>
             <div class="row featured__filter" id="print">
-              <c:forEach var="vo" items="${sList }">
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${vo.image }">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">${vo.name }</a></h6>
-                            <h5>${vo.price }</h5>
-                        </div>
-                    </div>
-                </div>
-              </c:forEach>
+            
             </div>
         </div>
     </section>
