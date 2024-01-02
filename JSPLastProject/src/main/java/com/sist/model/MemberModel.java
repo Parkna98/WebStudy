@@ -20,6 +20,7 @@ public class MemberModel {
   public String member_join(HttpServletRequest request,
 		  HttpServletResponse response)
   {
+	  CommonsModel.commonsFooterData(request);
 	  request.setAttribute("main_jsp", "../member/join.jsp");
 	  return "../main/main.jsp";
   }

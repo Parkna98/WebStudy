@@ -1,5 +1,6 @@
 package com.sist.model;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -89,7 +90,7 @@ public class FoodModel {
 		request.setAttribute("list", list);
 		request.setAttribute("gu", gu);
 		request.setAttribute("address", address);
-		
+		CommonsModel.commonsFooterData(request);
 		request.setAttribute("main_jsp", "../food/location.jsp");
 		return "../main/main.jsp";
 	}
@@ -161,11 +162,12 @@ public class FoodModel {
 		request.setAttribute("list", list);
 		
 		request.setAttribute("main_jsp", "../food/list.jsp");
+		CommonsModel.commonsFooterData(request);
 		return "../main/main.jsp";
 	}
 	
 	@RequestMapping("food/detail.do")
-	public String food_detail(HttpServletRequest request, HttpServletResponse response) {
+	public String food_find_detail(HttpServletRequest request, HttpServletResponse response) {
 		
 		String fno=request.getParameter("fno");
 		FoodDAO dao=FoodDAO.newInstance();
@@ -174,6 +176,34 @@ public class FoodModel {
 		
 		request.setAttribute("vo", vo);
 		request.setAttribute("main_jsp", "../food/detail.jsp");
+		CommonsModel.commonsFooterData(request);
+		return "../main/main.jsp";
+	}
+	
+	@RequestMapping("food/food_before_detail.do")
+	public String food_before(HttpServletRequest request,HttpServletResponse response) {
+		
+		String fno=request.getParameter("fno");
+		Cookie cookie=new Cookie("food_"+fno, fno);
+		cookie.setPath("/");
+		cookie.setMaxAge(60*60*24);
+		response.addCookie(cookie);
+		return "redirect:../food/food_detail.do?fno="+fno;
+	}
+	
+	@RequestMapping("food/food_detail.do")
+	public String food_detail(HttpServletRequest request,HttpServletResponse response) {
+		
+		String fno=request.getParameter("fno");
+		FoodDAO dao=FoodDAO.newInstance();
+		FoodVO vo=dao.foodDetailData(Integer.parseInt(fno));
+		String addr=vo.getAddress();
+		String addr1=addr.substring(addr.indexOf(" ")+1);
+		String addr2=addr1.substring(0,addr1.indexOf(" "));
+//		System.out.println(addr2.trim());
+		request.setAttribute("addr", addr2.trim());
+		request.setAttribute("vo", vo);
+		request.setAttribute("main_jsp", "../food/food_detail.jsp");
 		return "../main/main.jsp";
 	}
 }
