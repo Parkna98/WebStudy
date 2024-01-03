@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+</style>
 </head>
 <body>
 <!-- Breadcrumb Section Begin -->
@@ -53,32 +55,20 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
                         <h3>${vo.name }</h3>
+                        <p style="margin-bottom: 15px">${vo.detailaddr }</p>
                         <div class="product__details__rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-half-o"></i>
-                            <span>${vo.revcount }</span>
+                            <span>${vo.revcount }개 리뷰</span>
                         </div>
                         <div class="product__details__price">&#8361;${vo.price }~</div>
-                        <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
-                            vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
-                            quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
-                        <div class="product__details__quantity">
-                            <div class="quantity">
-                                <div class="pro-qty">
-                                    <input type="text" value="1">
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#" class="primary-btn">ADD TO CARD</a>
+                        <br>
+                        <a href="#" class="primary-btn">예약하기</a>
+                        <a href="#" class="primary-btn">찜하기</a>
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
-                        <ul>
-                            <li><b>유형</b> <span>${vo.type }</span></li>
-                            <li><b>주소</b> <span>${vo.detailaddr }</span></li>
-                            <li><b>기본정보</b> <span>${vo.basic }</span></li>
-                        </ul>
                     </div>
                 </div>
                 <div class="col-lg-12">
@@ -86,7 +76,7 @@
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
-                                    aria-selected="true">Description</a>
+                                    aria-selected="true">숙소 이용 정보</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
@@ -100,25 +90,14 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <div class="product__details__tab__desc">
-                                    <h6>Products Infomation</h6>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-                                        Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus
-                                        suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam
-                                        vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada.
-                                        Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat,
-                                        accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a
-                                        pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula
-                                        elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus
-                                        et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam
-                                        vel, ullamcorper sit amet ligula. Proin eget tortor risus.</p>
-                                        <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
-                                        ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet
-                                        elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum
-                                        porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus
-                                        nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-                                        Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed
-                                        porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum
-                                        sed sit amet dui. Proin eget tortor risus.</p>
+                                    <h6 style="margin-bottom: 15px">주변 정보</h6>
+                                    <p>${vo.around }</p><br>
+                                    <h6 style="margin-bottom: 15px">기본 정보</h6>
+                                    <p>${vo.basic }</p><br>
+                                    <h6 style="margin-bottom: 15px">반려동물 입실 관련 사항</h6>
+                                    <p>${vo.petinfo }</p><br>
+                                    <h6 style="margin-bottom: 15px">확인사항 및 기타</h6>
+                                    <p>${vo.other }</p>
                                 </div>
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">

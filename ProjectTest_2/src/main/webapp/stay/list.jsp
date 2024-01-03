@@ -22,10 +22,10 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Organi Shop</h2>
+                        <h2>Hotel With Dogs</h2>
                         <div class="breadcrumb__option">
                             <a href="../main/main.do">Home</a>
-                            <span>Shop</span>
+                            <span>Stay</span>
                         </div>
                     </div>
                 </div>
@@ -228,8 +228,8 @@
                                             </ul>
                                         </div>
                                         <div class="product__discount__item__text">
-                                            <span>Dried Fruit</span>
-                                            <h5><a href="#">${tvo.name }</a></h5>
+                                            <span></span>
+                                            <h5 class="stayname"><a href="../stay/detail_before.do?stayno=${tvo.stayno }">${tvo.name }</a></h5>
                                             <div class="product__item__price">&#8361;${tvo.price }~</div>
                                         </div>
                                     </div>
@@ -275,7 +275,7 @@
                                 </div>
                                 <div class="product__item__text">
                                     <h6 class="stayname"><a href="../stay/detail_before.do?stayno=${vo.stayno }">${vo.name }</a></h6>
-                                    <h5>${vo.price }원 부터~</h5>
+                                    <h5>&#8361;${vo.price }~</h5>
                                 </div>
                             </div>
                         </div>
